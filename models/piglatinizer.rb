@@ -17,16 +17,15 @@ class PigLatinizer
     
              if word[0].match(/[aeouiAEIOU]/)
                 word = "#{word}way"
-            elsif word[0].match(/[bcdfghjklmnpqrstvw]/) && word[1].match(/[bcdfghjklmnpqrstvw]/) && word[2].match(/[bcdfghjklmnpqrstvw]/)
+            elsif !word[0].match(/[aeouiAEIOU]/) && !word[1].match(/[aeouiAEIOU]/) && !word[2].match(/[aeouiAEIOU]/)
                 con_clust_three = word[3..-1]
                 third_letter = word_new.slice(1)
                 word = "#{con_clust_three}#{first_letter}#{second_letter}#{third_letter}ay"
-            elsif word[0].match(/[bcdfghjklmnpqrstvw]/) && word[1].match(/[bcdfghjklmnpqrstvw]/)
+            elsif !word[0].match(/[aeouiAEIOU]/) && !word[1].match(/[aeouiAEIOU]/)
                 con_clust_two = word[2..-1]
                 word = "#{con_clust_two}#{first_letter}#{second_letter}ay" 
-            elsif word[0].match(/[bcdfghjklmnpqrstvwxyz]/)
+            elsif !word[0].match(/[aeouiAEIOU]/)
                 word = "#{word_new}#{first_letter}ay"
-                binding.pry 
             end
         end.join(" ")
     end
